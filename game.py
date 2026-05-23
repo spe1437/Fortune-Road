@@ -197,7 +197,7 @@ class Game:
             print(f"Player {player.symbol} received $100 bonus.")
 
         elif tile == 'J':
-            print("Jile tile.")
+            print("Jail tile.")
             player.skip_turn = True
             print(f"Player {player.symbol} will skip the next turn.")
 
