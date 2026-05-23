@@ -1,0 +1,11 @@
+money,200,Lucky day! You received $200.
+money,-100,You lost your wallet. Lose $100.
+move,2,Move forward 2 spaces.
+move,-2,Move backward 2 spaces.
+jail,0,Go to Jail. You will skip your next turn.
+tax,-150,Unexpected tax! Pay $150.
+bonus,300,You won a prize! Receive $300.
+start,0,Move directly to Start.
+skip,0,You are tired. Skip your next turn.
+double_rent,0,Your next rent payment is doubled.
+free_upgrade,0,Upgrade one owned property for free.

@@ -1,0 +1,48 @@
+==================================================
+                FORTUNE ROAD RULES
+==================================================
+
+OBJECTIVE
+Become the richest player in the game.
+
+GAME MODES
+- Fixed Round Mode:
+  The game ends after a set number of rounds.
+- Endless Mode:
+  The game continues until players decide to end it.
+
+ENDING THE GAME
+- Players may propose ending the game at any time.
+- The game ends only if all active players agree.
+- The game also ends if only one active player remains.
+
+BOARD TILES
+S : Start Tile
+L : Land Tile
+? : Chance Tile
+T : Tax Tile
+J : Jail Tile
+B : Bonus Tile
+
+LAND SYSTEM
+- Players may buy unowned land.
+- Landing on another player's land requires paying rent.
+- Players may offer to purchase another player's land when landing on it.
+- Players may upgrade their own lands to increase rent value.
+
+START TILE
+- All players start the game with $1000.
+- Passing the Start tile rewards the player with an additional $1000.
+- Landing exactly on the Start tile does not provide additional money.
+
+DEBT & BANKRUPTCY
+- Players with negative money enter debt status.
+- Players in debt must sell properties or declare bankruptcy.
+
+- Bankrupt players are removed from the game.
+
+WINNING
+- When the game ends, all active players are ranked by total wealth.
+- Total wealth includes cash and the value of owned properties.
+- The active player with the highest total wealth wins.
+- If only one active player remains, that player wins automatically.
