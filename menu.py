@@ -61,6 +61,14 @@ def choose_board_size():
             #print("Please enter a valid number.")
 
 def get_players() -> list[Player]:
+    '''
+    Creates and returns a list of players for the game.
+
+    The user is asked to enter the number of players,
+    which must be between 2 and 4.
+    Each player is automatically assigned a symbol.
+    '''
+    
     players = []
 
     while True:
