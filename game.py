@@ -4,9 +4,15 @@ from input_helper import get_choice
 import random
 
 class Game:
+    '''
+    Controls the main gameplay flow of Fortune Road.
+
+    This class manages turns, tile interactions,
+    game modes, debt handling, trading,
+    and determining the winner.
+    '''
 
     def __init__(self, players, board_size, game_mode, board_type):
-
         self.players = players
         self.board_size = board_size
         self.game_mode = game_mode
@@ -31,6 +37,13 @@ class Game:
         input("\nPress Enter to begin...")
 
     def play_fixed_round_mode(self) -> None:
+        '''
+        Runs the game using fixed-round mode.
+
+        The game ends after the maximum number
+        of rounds or when players vote to end it.
+        '''
+
         current_round = 1
         end_flag = False
 
@@ -55,6 +68,13 @@ class Game:
         self.show_winner()
     
     def play_endless_mode(self) -> None:
+        '''
+        Runs the game using endless mode.
+
+        The game continues until players agree
+        to end the game or only one player remains.
+        '''
+
         current_round = 1
         end_flag = False
 
@@ -79,6 +99,9 @@ class Game:
         self.show_winner()
 
     def start(self) -> None:
+        '''
+        Starts the game and launches the selected game mode.
+        '''
         self.display_game_start_info()
         self.board.display_board()
 
@@ -92,6 +115,15 @@ class Game:
         return random.randint(1, 6)
 
     def take_turn(self, player) -> bool:
+        '''
+        Handles a single player's turn.
+
+        The player may roll dice, view information,
+        or propose ending the game.
+
+        Returns False if the game should end.
+        '''
+
         if player.bankrupt:
             return True
         
@@ -114,8 +146,8 @@ class Game:
 
                 passed_start = player.move(dice, len(self.board.path))
                 if passed_start:
-                    player.earn_money(1000)
-                    print(f"Player {player.symbol} passed Start and received $1000.")
+                    player.earn_money(200)
+                    print(f"Player {player.symbol} passed Start and received $200.")
 
                 tile = self.board.get_tile(player.position)
                 print(f"Player {player.symbol} landed on tile: {tile}")
@@ -138,6 +170,12 @@ class Game:
                 print("Invalid choice.")
 
     def ask_end_game(self, player) -> bool:
+        '''
+        Asks all active players whether they agree
+        to end the game.
+        Returns True only if all active players agree.
+        '''
+
         for p in self.players:
             if p == player:
                 continue
@@ -150,6 +188,11 @@ class Game:
         return True
                 
     def handle_tile(self, player, tile) -> None:
+        '''
+        Handles the effect of the tile
+        the player lands on.
+        '''
+
         if tile == 'S':
             print("You are in the Start tile.")
 
@@ -171,7 +214,8 @@ class Game:
                 property.pay_rent(player)
                 print(f"Player {player.symbol} paid rent.")
 
-                choice = get_choice("Do you want to offer to buy this property? (y/n) ",['y','n'])
+                price = property.price + (property.level - 1) * 100
+                choice = get_choice(f"Do you want to offer to buy this property for ${price}? (y/n) ",['y','n'])
                 if choice.lower() == 'y':
                     self.offer_to_buy_property(player, property)
 
@@ -209,12 +253,25 @@ class Game:
 
         
     def check_player_status(self, player) -> None:
+        '''
+        Checks whether the player is bankrupt
+        or currently in debt.
+        '''
+
+        if player.money >= 0:
+            player.in_debt = False
+
         if player.check_bankruptcy():
             print(f"Player {player.symbol} is bankrupt.")
         elif player.check_debt():
             print(f"Player {player.symbol} is in debt.")
 
     def show_winner(self) -> None:
+        '''
+        Displays the final wealth of all active players
+        and announces the winner.
+        '''
+
         print()
         print("=" * 40)
         print("The game is over.")
@@ -235,6 +292,11 @@ class Game:
         print(f"Winner: Player {winner.symbol}. Congratulation!")
     
     def show_round_summary(self) -> None:
+        '''
+        Displays a summary of all players'
+        current money after each round.
+        '''
+
         print()
         print("-" * 40)
         print(f"{'CASH SUMMARY':^40}")
@@ -248,6 +310,11 @@ class Game:
         print("-" * 40)
 
     def show_information(self, player) -> None:
+        '''
+        Displays detailed information about a player,
+        including money, properties, and total wealth.
+        '''
+
         print("-" * 40)
         print(f"Player {player.symbol}'s Information")
         print("-" * 40)
@@ -269,6 +336,11 @@ class Game:
         print("-" * 40)
 
     def sell_property(self, player) -> bool:
+        '''
+        Allows a player to sell one of their properties.
+        Returns True if the property is successfully sold.
+        '''
+
         if len(player.properties) == 0:
             print("You don't have any properties to sell.")
             return False
@@ -304,6 +376,13 @@ class Game:
             return False
     
     def handle_debt(self, player) -> None:
+        '''
+        Handles the debt state of a player.
+
+        The player must sell properties or declare
+        bankruptcy until their money becomes non-negative.
+        '''
+
         while player.money < 0 and not player.bankrupt:
             print()
             print("=" * 40)
@@ -339,6 +418,11 @@ class Game:
                 return
 
     def offer_to_buy_property(self, buyer, property) -> None:
+        '''
+        Allows a player to offer to purchase
+        another player's property.
+        '''
+
         seller = property.owner
         price = property.price + (property.level - 1) * 100
         if buyer.money < price:
@@ -358,8 +442,12 @@ class Game:
         else:
             print("The owner rejected the trade.")
 
-    # if only one player left, game over and the winner is the last active player
     def only_one_player_left(self) -> bool:
+        '''
+        Checks whether only one active player remains.
+        Returns True if only one player is not bankrupt.
+        '''
+
         active_count = 0
         for player in self.players:
             if not player.bankrupt:
@@ -367,14 +455,3 @@ class Game:
         if active_count == 1:
             return True
         return False
-
-
-
-
-        
-            
-    
-
-    
-
-
