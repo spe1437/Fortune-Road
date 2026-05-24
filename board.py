@@ -20,6 +20,11 @@ class Board:
             raise ValueError('Invalid board type.')
 
     def create_empty_board(self) -> list[list[str]]:
+        '''
+        Creates and returns an empty square game board.
+        Empty spaces are represented using blank characters.
+        '''
+
         board = []
         for row in range(self.size):
             board.append([])
@@ -30,6 +35,13 @@ class Board:
     
     #show the board
     def display_board(self, players=None) -> None:
+        '''
+        Displays the current game board in the terminal.
+
+        The board includes tile types, owned properties,
+        property levels, and player positions.
+        '''
+
         for row_index, row in enumerate(self.board):
             for col_index, cell in enumerate(row):
 
@@ -38,23 +50,38 @@ class Board:
                 #show each player currently at this position
                 if players is not None:
                     for player in players:
+
                         if not player.bankrupt:
                             player_row, player_col = self.path[player.position]
+
                             if player_row == row_index and player_col == col_index:
                                 player_symbols += player.symbol
+                # default display
+                display = cell
+                # check whether this tile is a property
+                for position, property in self.properties.items():
+                    property_row, property_col = self.path[position]
+                    if property_row == row_index and property_col == col_index:
+                        if property.owner is not None:
+                            display = f"L{property.owner.symbol}{property.level}"
+                        else:
+                            display = 'L'
 
+                # add player symbols
                 if player_symbols != '':
-                    display = f'{cell}[{player_symbols}]'
-                    #print(f"[{player_symbols}]".center(5), end = '')
-                else:
-                    display = cell
-                    #print(f"{cell:^5}", end = '')
-                print(f"{display:<8}", end = '')
+                    display += f'[{player_symbols}]'
+
+                print(f"{display:<10}", end = '')
 
             print()
 
     #show player's property map
     def display_property_map(self, player) -> None:
+        '''
+        Displays a map showing the properties owned
+        by the specified player.
+        '''
+
         for row_index, row in enumerate(self.board):
             for col_index, cell in enumerate(row):
                 symbol = ''
@@ -73,6 +100,11 @@ class Board:
 
     #create the movement path around the outer edge of the board
     def create_path(self) -> list[tuple]:
+        '''
+        Creates and returns the movement path around
+        the outer edge of the board.
+        '''
+
         path = []
 
         #create the top row
@@ -92,6 +124,10 @@ class Board:
 
     #create the tile list, including every type of tiles
     def create_tiles(self) -> list[str]:
+        '''
+        Creates and returns a randomized list of tiles
+        used to generate the game board.
+        '''
         path_length = len(self.path)
 
         land_count = path_length * 50 // 100            # 50%
@@ -118,6 +154,11 @@ class Board:
     
     #shuffle the tiles to create a random board layout
     def generate_random_tiles(self) -> None:
+        '''
+        Randomly assigns tiles to the board and creates
+        property objects for all land tiles.
+        '''
+
         tiles = self.create_tiles()
         random.shuffle(tiles)
 
@@ -151,4 +192,3 @@ class Board:
 
         return board
   
-
