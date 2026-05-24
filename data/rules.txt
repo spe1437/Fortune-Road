@@ -24,6 +24,9 @@ T : Tax Tile
 J : Jail Tile
 B : Bonus Tile
 
+BOARD MOVEMENT
+- Players move clockwise around the outer edge of the board.
+
 LAND SYSTEM
 - Players may buy unowned land.
 - Landing on another player's land requires paying rent.
@@ -32,13 +35,12 @@ LAND SYSTEM
 
 START TILE
 - All players start the game with $1000.
-- Passing the Start tile rewards the player with an additional $1000.
+- Passing the Start tile rewards the player with an additional $200.
 - Landing exactly on the Start tile does not provide additional money.
 
 DEBT & BANKRUPTCY
 - Players with negative money enter debt status.
 - Players in debt must sell properties or declare bankruptcy.
-
 - Bankrupt players are removed from the game.
 
 WINNING
