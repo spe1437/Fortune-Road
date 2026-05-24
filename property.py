@@ -1,4 +1,11 @@
 class Property:
+    '''
+    Represents a purchasable land tile in the game.
+
+    Properties can be bought, upgraded,
+    and used to collect rent from other players.
+    '''
+    
     def __init__(self):
         self.owner = None
         self.rent = 50
@@ -35,4 +42,3 @@ class Property:
         return False
     
     
-
