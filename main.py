@@ -2,8 +2,14 @@ import menu
 import rules
 from game import Game
 
+    
 
 def start_game() -> None:
+    '''
+    Starts a new game session by asking the user
+    to configure the game settings and create players.
+    '''
+
     game_mode = menu.choose_game_mode()
     board_type = menu.choose_board_type()
     if board_type == '2':
@@ -17,6 +23,10 @@ def start_game() -> None:
     game.start()
 
 def main():
+    '''
+    Main program loop for the Fortune Road game.
+    Displays the main menu and handles user choices.
+    '''
 
     menu.display_title()
 
