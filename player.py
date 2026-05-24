@@ -43,4 +43,3 @@ class Player:
             self.bankrupt = True
         return self.bankrupt
         
-
