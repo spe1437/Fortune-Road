@@ -5,6 +5,7 @@ class Board:
     def __init__(self, size: int, board_type: str):
         self.board_type = board_type
         self.properties = {}
+        
 
         #1: random; 2: file
         if self.board_type == '1':
@@ -16,6 +17,7 @@ class Board:
             self.board = self.load_board_from_file('data/board.txt')
             self.size = len(self.board)
             self.path = self.create_path()
+            self.create_properties_from_board()
         else:
             raise ValueError('Invalid board type.')
 
@@ -171,6 +173,17 @@ class Board:
             if tiles[i - 1] == 'L':
                 self.properties[i] = Property() 
 
+    def create_properties_from_board(self) -> None:
+        '''
+        Creates property objects for all land tiles
+        loaded from a board file.
+        '''
+
+        for position in range(len(self.path)):
+            row, col = self.path[position]
+            if self.board[row][col] == 'L':
+                self.properties[position] = Property()
+
     #return the tile type at a given path position
     def get_tile(self, position: int) -> str:
         row, col = self.path[position]
@@ -191,4 +204,6 @@ class Board:
         file.close()
 
         return board
+
+    
   
