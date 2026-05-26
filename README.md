@@ -44,7 +44,7 @@ data/
 ## Game Rules
 
 - Players take turns rolling a dice to move around the board.
-- Passing the Start tile rewards the player with $1000.
+- Passing the Start tile rewards the player with $200.
 - Landing exactly on the Start tile does not provide money.
 - Players may purchase unowned properties.
 - Landing on another player's property requires rent payment.
