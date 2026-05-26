@@ -12,11 +12,10 @@ class Player:
     
     def move(self, steps: int, path_length: int) -> bool:
         old_position = self.position
-        self.position += steps
+        self.position = (self.position + steps) % path_length
         passed_start = False
-        if self.position >= path_length:
-            self.position %= path_length
-            if self.position != 0:
+        if steps > 0:
+            if old_position + steps >= path_length and self.position != 0:
                 passed_start = True
         return passed_start
     
