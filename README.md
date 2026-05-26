@@ -1,5 +1,7 @@
 # Fortune-Road
-Fortune Road is a terminal-based Monopoly-inspired board game written in Python.  Players move around a board, buy properties, pay rent, upgrade lands, trigger chance card events, and compete to become the wealthiest player.
+Fortune Road is a lightweight offline multiplayer board game inspired by traditional Monopoly-style tabletop experiences.
+
+The project was designed to recreate the casual social interaction of classic board games in a digital terminal-based format. It is intended for nearby players looking for a simple and low-pressure game experience during travel, waiting time, dorm life, or casual gatherings — without requiring internet access or complex controls.
 
 ## Features
 
@@ -17,6 +19,16 @@ Fortune Road is a terminal-based Monopoly-inspired board game written in Python.
 - Dynamic board display
 - Cash summary system
 - Start tile reward system
+
+## Programming Concepts Used
+
+- Object-Oriented Programming (Player, Property, Board, and Chance classes)
+- File handling for custom boards and chance card systems
+- Random event generation
+- Game loop and turn management
+- Input validation and error handling
+- Dynamic state management
+- Modular program structure
 
 ## How to Run
 
